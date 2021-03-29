@@ -1,0 +1,120 @@
+{% extends "index.html" %}
+
+{% block body %}
+
+<div class="row">
+   
+        {% csrf_token %}
+    <div class="col-md-4">
+        <div class="my-3 mx-5">
+            <img src="{{ show_product.pimage.url }}"  id="image" style="cursor: pointer;"  title="Click to upload image"/>
+            <input type="file" id="myfile" style="display:none" name="proimage" onchange="readProductImg(this)" />
+        </div>
+        
+    </div>
+
+    <div class="col-md-8">
+        <h3 class="text-center bg-light">Product Details</h3>
+        
+            <div class="form-group row">
+                <label for="pname" class="col-sm-3 col-form-label">Product Name</label>
+                <div class="col-sm-7">
+                    <input type="text" readonly  class="form-control " value="{{ show_product.name }}" placeholder="Name of Product" id="pname" name="proname" >
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="model" class="col-sm-3 col-form-label">Model</label>
+                <div class="col-sm-5">
+                    <input type="text" readonly  class="form-control " value="{{ show_product.pmodel }}" placeholder="Mf5RcE" id="model" name="promodel" >
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="model" class="col-sm-3 col-form-label">Type</label>
+                <div class="col-sm-5">
+                    <input type="text" readonly  class="form-control " value="{{ show_product.ptype }}" placeholder="Mf5RcE" name="promodel" >
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="bl" class="col-sm-3 col-form-label">Battery Life</label>
+                <div class="col-sm-3">
+                    <div class="input-group">
+                        <input type="number" class="form-control" readonly value="{{ show_product.pbattery }}" name="probatlife" placeholder="00" aria-label="00" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <span class="input-group-text" id="basic-addon2">Hours</span>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            
+        <div class="form-group row">
+            <label for="qr" class="col-sm-3 col-form-label">Quality Rating</label>
+            <div class="col-sm-2">
+                <div class="input-group">
+                    <input type="number" class="form-control" readonly value="{{ show_product.q_rating }}" name="proqrating" placeholder="0" aria-label="0" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2"> / 5</span>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="pr" class="col-sm-3 col-form-label">Product Rating</label>
+            <div class="col-sm-2"> 
+                <div class="input-group">
+                <input type="number" class="form-control" readonly value="{{ show_product.p_rating }}" name="proprating" placeholder="0" aria-label="0" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2"> / 5</span>
+                </div>
+              </div>
+            </div>
+        </div>
+            
+            <div class="form-group row">
+                <label  class="col-sm-3 col-form-label">Description</label>
+                <div class="col-sm-7">
+                    <textarea type="text" name="prodesc"  readonly  class="form-control " rows="5">{{ show_product.o_review }} </textarea>
+                </div>
+            </div>       
+
+    </div>
+    <hr>
+    <div class="col-md-10 ml-5">
+        <h5> Comments </h5>
+        <br>
+        <div class="col-md-10">
+                {% for com in comments_list %}
+                <div class="form-group row">
+                    <label  class="col-sm-1 col-form-label pr-1">
+                        <i class="fa fa-user-circle fa-3x"></i>
+                    </label>
+                    <div class="col-sm-7 pl-1 d-block">
+                        <label class="font-italic text-monospace d-block"><u>{{ com.cmt_by.first_name }}</u></label>
+                        <label class="font-weight-bold text-uppercase d-block">{{ com.cmt_desc }}</label>
+                        <label class="text-monospace font-italic small d-block">{{ com.created }}</label>
+                    </div>
+                </div>
+                {% endfor %}
+                {% if user.is_authenticated %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label  class="col-sm-1 col-form-label pr-1">
+                        <i class="fa fa-user-circle fa-3x"></i>
+                    </label>
+                    <div class="col-sm-7 pl-1">
+                       <textarea type="text" class="form-control" name="mycomment" rows="3"></textarea>
+                           <br>
+                        <button type="submit" class="btn btn-primary">Post</button>
+                    </div>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

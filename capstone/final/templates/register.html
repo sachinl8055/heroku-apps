@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone</title>
+    
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+  <link href="{% static 'css/login.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="back">
+
+
+        <div class="div-center">
+      
+      
+          <div class="content">
+      
+      
+            <h3>Register</h3>
+            <hr />
+            <form method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Re-enter Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Re-enter Password" name="cpassword" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Signup</button>
+              <hr />
+              <a class="btn btn-link" href="/login">Login</a>
+              <a  class="btn btn-link" href="/">Back to Home</a>
+      
+            </form>
+      
+          </div>
+      
+      
+          </span>
+        </div>
+</body>
+</html>

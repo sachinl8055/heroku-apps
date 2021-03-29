@@ -1,0 +1,106 @@
+{% extends "index.html" %}
+
+{% block body %}
+
+<form method="POST" enctype="multipart/form-data">
+<div class="row">
+   
+        {% csrf_token %}
+    <div class="col-md-4">
+        <div class="my-3 mx-5">
+            <img src="/static/images/noProfile.jpeg"  id="image" style="cursor: pointer;"  title="Click to upload image"/>
+            <input type="file" id="myfile" style="display:none" name="proimage" onchange="readProductImg(this)" />
+        </div>
+        
+    </div>
+
+    <div class="col-md-8">
+        <h3 class="text-center bg-light">Product Details</h3>
+        
+            <div class="form-group row">
+                <label for="pname" class="col-sm-3 col-form-label">Product Name</label>
+                <div class="col-sm-7">
+                    <input type="text"   class="form-control " placeholder="Name of Product" id="pname" name="proname" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="model" class="col-sm-3 col-form-label">Model</label>
+                <div class="col-sm-5">
+                    <input type="text"   class="form-control " placeholder="Mf5RcE" id="model" name="promodel" required>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="model" class="col-sm-3 col-form-label">Type</label>
+                <div class="col-sm-5">
+                            
+                <select class="custom-select custom-select-sm" name="protype" required>
+                    {% if ptypes is not None %}
+                    <option selected disabled>Select</option>
+                    {% endif %}
+                    {% for typs in ptypes %}
+                    <option value="{{ typs.title }}">{{ typs.title }}</option>
+                    {% empty %}
+                    <option selected disabled>NA</option>
+                    {% endfor %}
+                </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="bl" class="col-sm-3 col-form-label">Battery Life</label>
+                <div class="col-sm-3">
+                    <div class="input-group">
+                        <input type="number" class="form-control" name="probatlife" placeholder="00" aria-label="00" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <span class="input-group-text" id="basic-addon2">Hours</span>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            
+        <div class="form-group row">
+            <label for="qr" class="col-sm-3 col-form-label">Quality Rating</label>
+            <div class="col-sm-2">
+                <div class="input-group">
+                    <input type="number" class="form-control" name="proqrating" placeholder="0" aria-label="0" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2"> / 5</span>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="pr" class="col-sm-3 col-form-label">Product Rating</label>
+            <div class="col-sm-2"> 
+                <div class="input-group">
+                <input type="number" class="form-control" name="proprating" placeholder="0" aria-label="0" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2"> / 5</span>
+                </div>
+              </div>
+            </div>
+        </div>
+            
+            <div class="form-group row">
+                <label  class="col-sm-3 col-form-label">Description (optional)</label>
+                <div class="col-sm-7">
+                    <textarea type="text" name="prodesc"  class="form-control " rows="5"> </textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-9 ml-auto">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="reset" class="btn btn-secondary">Clear</button>
+        </div>
+            </div>
+       
+
+    </div>
+
+</div>
+</form>
+
+{% endblock %}

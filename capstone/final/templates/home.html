@@ -1,0 +1,68 @@
+{% extends "index.html" %}
+
+{% block body %}
+
+<div class="row">
+  <div class="col mb-3 bg-light">
+    <div class="ml-auto">
+
+      <div class="d-flex flex-row-reverse">
+
+        <div class="p-2">
+
+          <select class="custom-select custom-select-sm">
+            <option value="1">High Rating</option>
+            <option value="2">Low Rating</option>
+          </select>
+
+        </div>
+
+        <div class="p-2">Sort</div>
+
+        <div class="p-2">
+
+          <select class="custom-select custom-select-sm">
+            {% if ptypes is not None %}
+            <option value="0" selected>All</option>
+            {% endif %}
+            {% for typs in ptypes %}
+            <option value="{{ typs }}">{{ typs.title }}</option>
+            {% empty %}
+            <option selected disabled>NA</option>
+            {% endfor %}
+          </select>
+
+        </div>
+
+        <div class="p-2">Filter</div>
+        
+      </div>
+    </div>
+
+  </div>
+    <div class="col-md-12">
+       {% for product in all_product %}
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{ product.pimage.url }}" alt="Card image cap">
+            <div class="card-body py-1">
+              <h5 class="card-title"><b>{{ product.name }}</b></h5>
+              <h6 class="card-subtitle mb-2 text-muted">Model : <b>{{ product.pmodel }}</b></h6>
+              <p>{{ product.o_review }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Product Ratings : <b> {{ product.p_rating }} / 5</b></li>
+                <li class="list-group-item">
+                    <i class="fa fa-thumbs-up  mx-2 text-success" aria-hidden="true" onclick="like({{product.id}})"></i><b>{{ product.liked.count }}</b>
+
+                    <i class="fa fa-thumbs-down  mx-2 text-danger" aria-hidden="true" onclick="Unlike({{product.id}})"></i><b>{{ product.unliked.count }}</b>
+                </li>
+              </ul>
+              <div class="card-body">
+                <a href="/showproduct/{{ product.id }}" class="card-link">More Details ...</a>
+              </div>
+          </div>
+          {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

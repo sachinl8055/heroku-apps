@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone</title>
+    
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+  <link href="{% static 'css/login.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="back">
+
+
+        <div class="div-center">
+      
+      
+          <div class="content">
+      
+      
+            <h3>Login</h3>
+            <hr />
+            <form method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address *</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="username" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password *</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+              <hr />
+              <a  class="btn btn-link" href="/register">Register</a>
+              <a  class="btn btn-link" href="/">Back to Home</a>
+      
+            </form>
+      
+          </div>
+      
+      
+          </span>
+        </div>
+</body>
+</html>
