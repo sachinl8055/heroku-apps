@@ -51,11 +51,20 @@
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Product Ratings : <b> {{ product.p_rating }} / 5</b></li>
+                {% if user.is_authenticated %}
                 <li class="list-group-item">
-                    <i class="fa fa-thumbs-up  mx-2 text-success" aria-hidden="true" onclick="like({{product.id}})"></i><b>{{ product.liked.count }}</b>
+                  <i class="fa fa-thumbs-up  mx-2 text-success" aria-hidden="true" onclick="like({{product.id}})"></i><b>{{ product.liked.count }}</b>
 
-                    <i class="fa fa-thumbs-down  mx-2 text-danger" aria-hidden="true" onclick="Unlike({{product.id}})"></i><b>{{ product.unliked.count }}</b>
-                </li>
+                  <i class="fa fa-thumbs-down  mx-2 text-danger" aria-hidden="true" onclick="Unlike({{product.id}})"></i><b>{{ product.unliked.count }}</b>
+              </li>
+                {% else %}
+                <li class="list-group-item">
+                  <i class="fa fa-thumbs-up  mx-2 text-success" aria-hidden="true"></i><b>{{ product.liked.count }}</b>
+
+                  <i class="fa fa-thumbs-down  mx-2 text-danger" aria-hidden="true"></i><b>{{ product.unliked.count }}</b>
+              </li>
+                {% endif %}
+                
               </ul>
               <div class="card-body">
                 <a href="/showproduct/{{ product.id }}" class="card-link">More Details ...</a>
